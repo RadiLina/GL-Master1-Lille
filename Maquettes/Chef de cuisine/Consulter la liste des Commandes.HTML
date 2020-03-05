@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <title>Gestion de restaurant</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <h1 style="background-image:url(images/fond.jpg); border-color: #09e4d9; border-style:solid; border-radius: 10px; width:300px; margin:auto; text-align:center;"> Gerard</h1>
+
+    <body>
+            <h1><span style="font-size: 12pt; font-family: &quot;Times New Roman&quot;;">La liste des commandes</span></h1>
+
+            <label for="site-search">Recherche : </label>
+  <input type="search" id="site-search" name="q"
+         aria-label="Search through site content">
+
+  <button>Search</button> <br>
+
+  <div > Filtrer:
+
+    <select name="pets" id="pet-select">
+      <option value="">-- Choix :  --</option>
+      <option value="N Commande "> N Commande</option>
+      <option value=" Date et heure de la commande">  Date et heure de la commande</option>
+      <option value="Etat "> Etat </option>
+    </select>
+
+    <button>Valider</button>
+  </div>
+
+            <form action="ResultatsParCriteres.html">
+              <table style="text-align: left; width: 100%;" border="1"
+             cellpadding="2" cellspacing="2">
+                <tbody>
+                  <tr>
+                    <td style="vertical-align: top;"> N Commande  </td>
+                    <td style="vertical-align: top;"> N Client </td>
+                    <td style="vertical-align: top;"> Date et heure de la commande</td>
+                    <td style="vertical-align: top;"> Etat</td>
+                  </tr>
+                  <tr>
+                        <td style="vertical-align: top;"> E5443 </td>
+                        <td style="vertical-align: top;"> A652 </td>
+                        <td style="vertical-align: top;"> 11:55 _ 10/12/2019 </td>
+                        <td style="vertical-align: top;"> Prét </td>
+                  </tr>
+                  <tr>
+                        <td style="vertical-align: top;"> E1266 </td>
+                        <td style="vertical-align: top;"> A223 </td>
+                        <td style="vertical-align: top;"> 12:11 _ 10/12/2019 </td>
+                        <td style="vertical-align: top;"> En Attente <br>
+                          <input type="button" value="Accepter "
+                          style=" width:100px; padding:8px 0 6px 0; font:Bold 13px Arial; border-radius:2px;
+                                  margin: 2pt; box-shadow:1px 1px 3px #999; ">
+                                  <br>
+
+                          <input type="button" value="Refuser"
+                                 style=" width:100px; padding:8px 0 6px 0; font:Bold 13px Arial; border-radius:2px;
+                                         margin: 2pt; box-shadow:1px 1px 3px #999; ">
+
+                                        <br>
+
+                         <input type="button" value="Modifier"
+                                style=" width:100px; padding:8px 0 6px 0; font:Bold 13px Arial; border-radius:2px;
+                                        margin: 2pt; box-shadow:1px 1px 3px #999; ">
+                         </td>
+                  </tr>
+                </tbody>
+              </table>
+
+
+</body>
+</html>

@@ -1,0 +1,22 @@
+title Composer une commande DSS
+Serveur ->+ Systéme : identification
+Systéme -->- Systéme :
+Systéme-->- Serveur: afficher les plats disponibles
+
+Loop 
+    Serveur ->+ Systéme : choisir un article.
+    Systéme ->+ Systéme : Valider les choix
+    Systéme -->- Systéme : 
+
+    
+    alt choix non correct
+            Systéme ->+ Systéme : Afficher les choix non disponibles
+            Systéme -->- Systéme : 
+    end
+end
+       
+       
+Serveur ->+ Systéme : valider la commande
+Systéme->+Systéme: Changer l'état de la commande vers \n (en cours de proparation)
+
+Systéme-->- Serveur :Notification sur l'état de la commande

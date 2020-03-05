@@ -1,0 +1,42 @@
+title Payer la commande
+
+Client->+Systeme: Payer la commande
+Systeme->+Systeme: Proposer choix de paiement (CB , especes)
+Systeme-->-Systeme:
+Systeme-->-Client:
+Client->+Systeme: Choisit methode de paiement (CB)
+
+Systeme->+Systeme: Indiquer de rentrer le code
+Systeme-->-Systeme:
+Systeme-->-Client: 
+
+loop nombre d'essaie
+alt delai non dépassé  
+
+    alt code correcte
+        Client->+Systeme: Rentre le code (code) 
+        Systeme->+Systeme: Valide le code 
+      alt solde suffisant
+             Systeme->+Systeme : debite le solde
+             Systeme-->-Systeme :
+      else
+      Systeme->+Systeme : Affiche un message d'erreur
+      Systeme-->-Systeme :
+      
+      end
+        Systeme-->-Systeme:Imprimer ticket de caisse
+        Systeme-->-Client: Imprimer ticket de caisse
+        
+    else code incorrecte
+    
+    Systeme->+Systeme : Affiche un message d'erreur
+    Systeme-->-Systeme :
+    end
+else delai dépassé
+
+   Systeme->+Systeme : [Appel CU Finaliser la commande]
+    Systeme-->-Systeme :
+    
+    end
+end
+    

@@ -1,0 +1,49 @@
+https://www.websequencediagrams.com/
+
+DSS
+
+title Accepte une commande DSS
+
+L'utilisateur ->+ Systéme: selectionne une commande
+Systéme -> Systéme : Afficher la liste des plats et personnels
+Systéme --> Systéme : 
+Systéme -->- L'utilisateur : 
+Loop 
+    L'utilisateur ->+ Systéme : affecte les plats aux personnels.
+    Systéme ->+ Systéme : Valider les choix
+    Systéme -->- Systéme : 
+
+    
+    alt choix non correct
+            Systéme ->+ Systéme : Afficher les choix invalides
+            Systéme -->- Systéme : 
+    end
+end
+    
+    loop
+       Systéme->+Systéme: Verifier l'utilisateur
+       Systéme-->-Systéme:
+           alt l'utilisateur non connecté
+               Systéme->+Systéme: proposer(connexion)
+               Systéme-->-Systéme:
+               Systéme-->- L'utilisateur:
+                L'utilisateur ->+Systéme:choix
+
+               alt choix==connextion
+                    Systéme->Systéme: [Appel CU Connexion]
+               end
+           end
+       end
+       
+                  
+Systéme->+Systéme: Changer l'état de la commabde
+Systéme-->-Systéme:
+Systéme->Systéme: [Appel CU Affiche Liste des commandes
+Systéme-->- L'utilisateur:
+
+
+
+__________________________
+
+
+

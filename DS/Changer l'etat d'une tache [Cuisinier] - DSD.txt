@@ -1,0 +1,20 @@
+title Changer l'etat d'une tache [Cuisinier] DSD
+Utilisateur  -> +MenuUI:Selectionner une tache
+MenuUI -> + MenuCtrl : Selectionner une tache
+MenuCtrl -> +TacheCtrl : Selectionner une tache
+TacheCtrl -> +TacheUI : affiche la tache concernée (T)
+TacheUI --> -TacheCtrl :
+
+TacheCtrl --> -MenuCtrl:
+MenuCtrl -->-MenuUI :
+MenuUI --> -Utilisateur :
+
+
+Utilisateur  -> +TacheUI : Appuyer sur Valider la tache(T)
+TacheUI -> +TacheCtrl : Changer l'état de la tache T vers "prête"
+
+TacheCtrl -> +TacheCtrl :Changement d'état
+
+
+TacheCtrl --> -TacheUI :
+TacheUI --> -Utilisateur   : 

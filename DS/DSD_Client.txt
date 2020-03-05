@@ -1,0 +1,47 @@
+title Payer la commande DSD
+
+Client  -> +MenuUI:payer une commande
+MenuUI -> + MenuCtrl : payer une commande
+MenuCtrl -> +PayerCommandeCtrl : payer une commande
+PayerCommandeCtrl -> +PayerCommandeUI : Proposer choix de paiement (CB , especes)
+PayerCommandeUI --> -PayerCommandeCtrl : 
+
+Client  -> +MenuUI:entrer methode de paiement (CB)
+MenuUI -> + MenuCtrl : entrer methode de paiement (CB)
+MenuCtrl -> +PayerCommandeCtrl : entrer methode de paiement (CB) 
+PayerCommandeCtrl -> +PayerCommandeUI : Entrer le code (code)
+PayerCommandeUI --> -PayerCommandeCtrl : 
+
+PayerCommandeCtrl --> -MenuCtrl:
+MenuCtrl -->-MenuUI :
+MenuUI --> -Client : 
+
+loop nombre d'essaie
+alt delai non dépassé  
+
+alt code correcte
+
+Client  -> +PayerCommandeUI : Rentre le code (code) 
+PayerCommandeUI -> +PayerCommandeCtrl : code saisi
+
+PayerCommandeCtrl -> +PayerCommandeCtrl : Valide
+
+alt code non valide
+PayerCommandeCtrl -> +PayerCommandeCtrl : affiche code non valide
+PayerCommandeCtrl --> -PayerCommandeCtrl:
+end
+PayerCommandeCtrl -> +PayerCommandeCtrl : debite solde
+alt solde insuffisant
+PayerCommandeCtrl -> +PayerCommandeCtrl : affiche solde non suffisant
+PayerCommandeCtrl --> -PayerCommandeCtrl:
+end
+
+
+PayerCommandeCtrl -> +ImprimerTicketCtrl : imprimer ticket (commande)
+ImprimerTicketCtrl  -> + ImprimerTicketUi : imprimer ticket 
+ImprimerTicketUi --> -Client   :
+end
+else delai dépassé  
+alt Appel CU Finaliser la commande
+end
+

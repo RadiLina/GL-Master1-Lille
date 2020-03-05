@@ -1,0 +1,23 @@
+
+Patron ->+ Systeme: choisit catégorie produit
+Systeme ->+ Systeme: affiche options gestion de produits
+Systeme -->- Systeme:
+Systeme -->- Patron :
+Patron ->+ Systeme: choisit ajouter produit
+Systeme ->+ Systeme: affiche options formulaire infos produit
+Systeme -->- Systeme:
+Systeme -->- Patron :
+loop informations non correctes
+       Patron->+Systeme: saisit les informations
+       Systeme->+Systeme:valide les informations
+       Systeme-->-Systeme:
+
+       alt informations non correctes
+           Systeme->+Systeme: affiche un message "produit existe déja"
+            Systeme-->-Systeme:
+       end
+   end
+Systeme->+Systeme: enregistre le produit
+Systeme-->-Systeme:
+Systeme->Systeme: [Appel CU Affiche Produit]
+Systeme-->-Patron:

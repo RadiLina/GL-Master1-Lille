@@ -1,0 +1,53 @@
+
+title Accepte une commande DSD
+
+L'utilisateur   -> +MenuUI:selectionne une commande
+MenuUI -> + MenuCtrl : selectionne une commande
+MenuCtrl -> +SelectionnerCommandeCtrl : selectionne une commande
+SelectionnerCommandeCtrl -> +SelectionnerCommandeUI : affiche la liste des plats et personnels
+SelectionnerCommandeUI --> -SelectionnerCommandeCtrl :
+
+SelectionnerCommandeCtrl --> -MenuCtrl:
+MenuCtrl -->-MenuUI :
+MenuUI --> -L'utilisateur  :
+
+loop ChoixValides
+    L'utilisateur ->+SelectionnerCommandeUI:Affecter les plats aux personnels
+    SelectionnerCommandeUI->+SelectionnerCommandeCtrl:ListeDesTachesAuxPersonnels(Liste)
+    SelectionnerCommandeCtrl->+SelectionnerCommandeCtrl:valide les choix
+    SelectionnerCommandeCtrl-->-SelectionnerCommandeCtrl:ChoixValides
+    alt !ChoixValides
+        SelectionnerCommandeCtrl->+SelectionnerCommandeUI:afficheChoixInvalides
+        SelectionnerCommandeUI-->-SelectionnerCommandeCtrl:
+    end
+end
+
+
+
+
+loop !connecte
+SelectionnerCommandeCtrl->+SelectionnerCommandeCtrl:valide utilisateur connecté
+SelectionnerCommandeCtrl-->-SelectionnerCommandeCtrl:connecte
+    alt !connecte
+    SelectionnerCommandeCtrl->+SelectionnerCommandeUI:afficher Connexion
+    SelectionnerCommandeUI-->-SelectionnerCommandeCtrl:
+    L'utilisateur->+SelectionnerCommandeUI:choix
+        alt choix==connexion
+            note right of SelectionnerCommandeUI 
+            Ref Connexion au site
+            end note
+        end
+    SelectionnerCommandeUI-->-L'utilisateur:
+    end
+end
+
+SelectionnerCommandeCtrl->+SelectionnerCommandeCtrl:enregistre les choix des taches
+SelectionnerCommandeCtrl-->-SelectionnerCommandeCtrl:
+SelectionnerCommandeCtrl->+SelectionnerCommandeUI:Affiche Liste des commandes
+    note right of SelectionnerCommandeUI 
+        Ref Afficher Commande avec 
+        Etat "En Train de preparation"
+    end note
+SelectionnerCommandeUI-->-SelectionnerCommandeCtrl:
+SelectionnerCommandeCtrl-->-SelectionnerCommandeUI:
+SelectionnerCommandeUI -->- L'utilisateur:

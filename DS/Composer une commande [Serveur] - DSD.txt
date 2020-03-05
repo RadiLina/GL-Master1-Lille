@@ -1,0 +1,41 @@
+title Composer une commande [Serveur] DSD
+Utilisateur  -> +MenuUI:Composer une commande
+MenuUI -> + MenuCtrl : Composer une commande
+MenuCtrl -> +SelectionnerArticleCtrl : Composer une commande
+SelectionnerArticleCtrl -> +SelectionnerArticleUI : affiche liste des articles
+SelectionnerArticleUI --> -SelectionnerArticleCtrl :
+
+SelectionnerArticleCtrl --> -MenuCtrl:
+MenuCtrl -->-MenuUI :
+MenuUI --> -Utilisateur :
+
+loop article valide
+Utilisateur  -> +SelectionnerArticleUI : Selectionner un article
+SelectionnerArticleUI -> +SelectionnerArticleCtrl : article saisi
+
+SelectionnerArticleCtrl -> +SelectionnerArticleCtrl : Verification Disponibilité(article)
+SelectionnerArticleCtrl -> +SelectionnerArticleCtrl : AjouterArticleALaCommande
+
+alt article non valide
+
+SelectionnerArticleCtrl -> +SelectionnerArticleCtrl : affiche article non valide
+SelectionnerArticleCtrl --> -SelectionnerArticleCtrl:
+end
+
+end
+Utilisateur  -> +SelectionnerArticleUI : Valider Commande
+SelectionnerArticleUI -> +SelectionnerArticleCtrl : Valider
+
+SelectionnerArticleCtrl -> +SelectionnerArticleCtrl :Validation
+
+alt commande vide
+
+SelectionnerArticleCtrl -> +SelectionnerArticleCtrl : affiche pas d'articles
+SelectionnerArticleUI --> -Utilisateur   : 
+else
+SelectionnerArticleCtrl -> +SelectionnerArticleCtrl : affiche un récapitulatif de la commande
+SelectionnerArticleUI --> -Utilisateur   : 
+
+end
+SelectionnerArticleCtrl --> -SelectionnerArticleUI :
+SelectionnerArticleUI --> -Utilisateur   : 

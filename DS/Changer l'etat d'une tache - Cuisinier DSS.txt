@@ -1,0 +1,12 @@
+title Changer l'état d'une tache DSS
+Cuisinier  ->+ Systéme : Accéder a la tache sur laquelle il travaille
+Systéme -->- Systéme :
+Systéme-->- Cuisinier: afficher la tache concernée
+
+
+    Cuisinier ->+ Systéme : appuyer sur le bouton valider.
+    Systéme ->+ Systéme : Changer l'etat de la tache vers prête
+    Systéme -->- Systéme : 
+
+       
+Systéme-->- Cuisinier :Notification sur l'état de la tache  
